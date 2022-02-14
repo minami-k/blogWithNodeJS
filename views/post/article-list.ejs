@@ -1,41 +1,36 @@
 <%- include('../includes/head.ejs') %>
-    <link rel="stylesheet" href="/css/product.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-</head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"></head>
 <body>
     <%- include('../includes/nav.ejs') %>
-    <div class="container">
-        <div class="row">
+    <div class="columns">
+        <div class="">
         <main>
         <% if(articles.length > 0) { %>
-            <div class="col-sm d-flex flex-wrap justify-content-around">
+            <div class="is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-space-evenly level-item">
             <% for(let article of articles) { %>
-            <div class=" d-flex mb-5 text-center" style="width: 30%;">
-                <article class="border pt-3 px-3 pb-2 mt-5 shadow-lg" style="width: max-content;">
+            <div class="column is-one-quarter mx-2 p-2 mt-5 has-text-centered box">
+                <article>
+                    <div>
+                        <img src="<%= article.imageUrl %>" alt="<%= article.title %>" width="100%">
+                    </div>
                     <header>
-                        <h1>
+                        <h1 class="title is-5 pb-1 mt-3">
                             <%= article.title %>
                         </h1>
                     </header>
-                    <div class="mt-3">
-                        <img src="<%= article.imageUrl %>" alt="<%= article.title %>" width="100%">
-                    </div>
-                    <div class="p-3">
-                        <%= article.description %>
+
+
+                    <div class="pb-4">
+                        <% if(article.description.length >= 20) { %>
+                            <%= article.description.slice(0, 20).concat('...')%>
+                        <% }else{ %>
+                            <%= article.description %>
+                        <% } %>
                     </div>
                     <div>
                         <div>
-                            <a href="/posts/<%= article._id %>" class="btn btn-secondary text-white">Read more</a>
+                            <a href="/posts/<%= article._id %>" class="button is-small is-link is-outlined">Read more</a>
                        </div>
-                       <div class="d-flex justify-content-end">
-                        <form action="/likes" method="post">
-                            <input type="hidden" name="postId" value="<%= article._id %>" />
-                            <a href="#" onclick="this.closest('form').submit();return false;"><i class="fas fa-thumbs-up"></i></a>
-                            <p><%= article.likes_count %></p>
-                        </form>  
-                       
-                    </div>
-
                     </div>
                 </article>
             </div>

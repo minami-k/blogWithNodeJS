@@ -1,18 +1,20 @@
 const Article = require("../models/article.model");
 
 exports.getPosts = (req, res, next) => {
-    Article.fetchAll()
-      .then((articles) => {
-  
-        const tempArticle = articles.map(i => ({ ...i, description: `${i.description.slice(0, 100)}.....`}))
-        
-        res.render("author/author-article-list", {
-          pageTitle: "All Posts",
-          articles: tempArticle,
-        });
-      })
-      .catch((err) => console.log(err));
-  };
+  Article.fetchAll()
+    .then((articles) => {
+      const tempArticle = articles.map((i) => ({
+        ...i,
+        description: `${i.description.slice(0, 30)}.....`,
+      }));
+
+      res.render("author/author-article-list", {
+        pageTitle: "All Posts",
+        articles: tempArticle,
+      });
+    })
+    .catch((err) => console.log(err));
+};
 
 exports.getAddPost = (req, res, next) => {
   res.render("post/add-edit-post", {

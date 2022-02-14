@@ -7,8 +7,10 @@
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
-  "nodemonConfig":{
-    "ignore": ["data/*.json"]
+  "nodemonConfig": {
+    "ignore": [
+      "data/*.json"
+    ]
   },
   "author": "",
   "license": "ISC",
@@ -18,11 +20,13 @@
   "dependencies": {
     "axios": "^0.25.0",
     "body-parser": "^1.19.1",
+    "bulma": "^0.9.3",
     "dotenv": "^14.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.2",
     "express-ejs-layouts": "^2.5.1",
     "mongodb": "^4.3.1",
+    "mongoose": "^6.2.1",
     "mysql2": "^2.3.3",
     "startbootstrap-clean-blog": "^6.0.7",
     "uuid": "^8.3.2"

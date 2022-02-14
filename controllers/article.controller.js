@@ -1,17 +1,16 @@
 const Article = require("../models/article.model");
-const Like = require("../models/likes.model")
 
 exports.getPosts = (req, res, next) => {
   Article.fetchAll()
     .then((articles) => {
       const tempArticle = articles.map((i) => ({
         ...i,
-        description: `${i.description.slice(0, 100)}.....`,
+        description: `${i.description.slice(0, 30)}.....`,
       }));
 
       res.render("post/article-list", {
         pageTitle: "All Posts",
-        articles: tempArticle,
+        articles: articles,
       });
     })
     .catch((err) => console.log(err));
@@ -30,7 +29,7 @@ exports.getPostById = (req, res, next) => {
 };
 
 exports.postLike = (req, res, next) => {
-  const {id, likeNum} = req.body;
-  Like.addLike(id, likeNum)
-  res.redirect('/') 
+  const { id, likeNum } = req.body;
+  Like.addLike(id, likeNum);
+  res.redirect("/");
 };

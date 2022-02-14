@@ -1,12 +1,13 @@
-const express = require('express')
+
 const bodyParser = require('body-parser')
+const express = require('express')
 const path = require('path')
 const mongoConnect = require('./util/db-mongo').mongoConnect
 const expressLayouts = require('express-ejs-layouts')
 
 const articleRoute = require('./routes/article.route')
-/* const adminRoute = require('./routes/admin.route')
- */
+const authorRoute = require('./routes/author.route')
+
 const app = express()
 
 app.set('view engine', 'ejs')
@@ -14,8 +15,8 @@ app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(express.static(path.join(__dirname, 'public')))
 
-/* app.use('/admin', adminRoute)
- */
+app.use('/author', authorRoute)
+
 app.use(articleRoute)
 
 //For layouts
